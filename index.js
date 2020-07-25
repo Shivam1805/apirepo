@@ -70,7 +70,7 @@ port = process.env.Port || 3000;
 var server_host = process.env.localhost || '0.0.0.0';
 
 app.listen(port,server_host, () => {
-  console.log(`listening on ${port}`);
+  console.log(`listening on`);
 });
 
 app.get('*', (_req, res) => {
