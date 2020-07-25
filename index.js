@@ -69,7 +69,7 @@ app.post('/userLogin', (req, res, next) => {
 port = process.env.Port || 3000;
 var server_host = process.env.localhost || '0.0.0.0';
 
-app.listen(port,server_host, () => {
+app.listen(port,'0.0.0.0', () => {
   console.log(`listening on`);
 });
 
