@@ -48,13 +48,23 @@ app.post('/userLogin', (req, res, next) => {
     password= req.body.password
     if (email) {
       let auth = "select * from usercredentials where email=? and password=?"
+      let auth2 = "UPDATE userdetails SET loginState= 'Online' where email=? "
       values = [email, password]
+      values2=[email]
       sqlDb.query(auth, values, (err, results) => {
         if (err) {
           res.status(404).send('err')
         }
         if (Object.keys(results).length > 0) {
+          sqlDb.query(auth2, values2, (err, results) => {
+            if (err) {
+              res.status(404).send('err')
+            }})
           return res.status(200).send('User Verified')
+          
+
+
+
         }
         
       })
@@ -66,7 +76,7 @@ app.post('/userLogin', (req, res, next) => {
 });
 
 
-port = process.env.PORT || 3000;
+port = process.env.PORT || 4000;
 var server_host = process.env.localhost || '0.0.0.0';
 
 app.listen(port,'0.0.0.0', () => {
